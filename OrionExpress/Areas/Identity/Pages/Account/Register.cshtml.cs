@@ -72,7 +72,7 @@ namespace OrionExpress.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [StringLength(50, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [Display(Name = "FullName")]
             public string FullName { get; set; }
 
@@ -120,6 +120,8 @@ namespace OrionExpress.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
+                user.FullName = Input.FullName;
+
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
@@ -160,11 +162,11 @@ namespace OrionExpress.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private IdentityUser CreateUser()
+        private ApplicationUser CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<IdentityUser>();
+                return Activator.CreateInstance<ApplicationUser>();
             }
             catch
             {

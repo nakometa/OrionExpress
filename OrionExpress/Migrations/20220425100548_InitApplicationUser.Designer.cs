@@ -9,11 +9,11 @@ using OrionExpress.Data;
 
 #nullable disable
 
-namespace OrionExpress.Data.Migrations
+namespace OrionExpress.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220424202053_ExtendUserIdentity")]
-    partial class ExtendUserIdentity
+    [Migration("20220425100548_InitApplicationUser")]
+    partial class InitApplicationUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -232,45 +232,14 @@ namespace OrionExpress.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("OrionExpress.Models.Shipment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(10)
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Recipient")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Sender")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("SentDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double?>("ServiceFee")
-                        .HasColumnType("float");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Shipments");
-                });
-
             modelBuilder.Entity("OrionExpress.Models.ApplicationUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
                     b.Property<string>("FullName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });

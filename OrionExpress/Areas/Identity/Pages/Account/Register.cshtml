@@ -33,7 +33,7 @@
                 <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="input-group mb-3">
-                        <input asp-for="Input.FullName" class="form-control" aria-required="true" placeholder="Име и фамилия" />
+                        <input asp-for="Input.FullName" class="form-control" autocomplete="fullname" aria-required="true" placeholder="Име и фамилия" />
                         <span asp-validation-for="Input.FullName" class="text-danger"></span>
                         <div class="input-group-append">
                             <div class="input-group-text">

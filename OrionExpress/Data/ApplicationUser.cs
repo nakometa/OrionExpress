@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OrionExpress.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        [StringLength(50)]
-        [Required]
         public string FullName { get; set; }
     }
 }
